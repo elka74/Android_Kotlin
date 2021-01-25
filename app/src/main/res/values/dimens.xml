@@ -10,5 +10,8 @@
     <dimen name="top_margin">8dp</dimen>
     <dimen name="end_margin">8dp</dimen>
     <dimen name="start_margin">8dp</dimen>
+    <dimen name="padding_default" />
+    <dimen name="m_dp">16dp</dimen>
+    <dimen name="CV">4dp</dimen>
 
 </resources>

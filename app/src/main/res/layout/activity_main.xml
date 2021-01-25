@@ -27,7 +27,22 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:spanCount = "2"
+        app:spanCount="2"
         tools:listitem="@layout/item_note" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_default"
+        android:layout_marginRight="@dimen/padding_default"
+        android:layout_marginBottom="@dimen/padding_default"
+        android:contentDescription="TODO"
+        android:src="@drawable/btn_add"
+        app:fabSize="normal"
+        app:layout_anchor="@id/mainRecycler"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior=".ui.FABBehavior" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
