@@ -19,10 +19,12 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            tools:text="Geekbrains + Kotlin forever" />
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginEnd="@dimen/end_margin"
+            tools:text="Geekbrains + Kotlin forever"
+            android:layout_marginLeft="@dimen/start_margin"
+            android:layout_marginRight="@dimen/end_margin" />
 
         <TextView
             android:id="@+id/body"
