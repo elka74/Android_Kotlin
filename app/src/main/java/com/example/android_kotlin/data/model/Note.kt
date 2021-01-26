@@ -6,10 +6,10 @@ import java.util.*
 
 @Parcelize
 data class Note(
-    val id: String,
-    val title: String,
-    val note: String,
-    val color: Color = Color.WHITE,
+    val id: String = "",
+    val title: String = "",
+    val note: String = "",
+    val color: Color = randomColor,
     val lastChanged: Date = Date()
 ) : Parcelable {
     override fun equals(other: Any?): Boolean {
@@ -26,6 +26,8 @@ data class Note(
 
     }
 }
+
+val randomColor = Color.values().toList().shuffled().first() // попытка сделать фйон заметки по умолчанию рандомным
 
 enum class Color {
     WHITE,
