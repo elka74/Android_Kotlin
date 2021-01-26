@@ -23,7 +23,7 @@ class FireStoreProvider : RemoteDadaProvider {
     override fun subscribeToAllNotes(): LiveData<NoteResult> {
         val result = MutableLiveData<NoteResult>()
 
-        notesReference.addSnapshotListener {value, error ->
+        notesReference.addSnapshotListener { value, error ->
             if (error != null) {
                 result.value = NoteResult.Error(error)
             } else if (value != null) {

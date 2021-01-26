@@ -11,8 +11,8 @@ import com.example.android_kotlin.ui.main.BaseViewModel
 import com.example.android_kotlin.ui.main.NoteViewState
 
 
-
-class NoteViewModel(val repository: Repository = Repository) : BaseViewModel<Note?, NoteViewState>() {
+class NoteViewModel(val repository: Repository = Repository) :
+    BaseViewModel<Note?, NoteViewState>() {
 
     private var pendingNote: Note? = null
 

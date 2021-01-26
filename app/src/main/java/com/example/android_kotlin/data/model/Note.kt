@@ -27,7 +27,8 @@ data class Note(
     }
 }
 
-val randomColor = Color.values().toList().shuffled().first() // попытка сделать фйон заметки по умолчанию рандомным
+val randomColor = Color.values().toList().shuffled()
+    .first() // попытка сделать фйон заметки по умолчанию рандомным
 
 enum class Color {
     WHITE,
