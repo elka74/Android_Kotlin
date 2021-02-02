@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024132155500",
+    "project_id": "my-note-7035d",
+    "storage_bucket": "my-note-7035d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024132155500:android:fd672708e243bb57583049",
+        "android_client_info": {
+          "package_name": "com.example.android_kotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024132155500-cquu31lndlvg2i5ljrivft3dinskmvuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuyavyF5gaUDhfF_zoW9pmb6dl6sbVSEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024132155500-cquu31lndlvg2i5ljrivft3dinskmvuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
