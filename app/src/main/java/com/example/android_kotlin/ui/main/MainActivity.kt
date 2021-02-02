@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.android_kotlin.R
 import com.example.android_kotlin.data.model.Note
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.android_kotlin.databinding.ActivityMainBinding
 
 
 
@@ -16,21 +16,21 @@ class MainActivity() : BaseActivity<List<Note>?, MainViewState>() {
     }
     override val layoutRes: Int = R.layout.activity_main
     private lateinit var adapter: MainAdapter
-    //override lateinit var ui: ActivityMainBinding
+    override val ui: ActivityMainBinding
+                by lazy { ActivityMainBinding.inflate(layoutInflater)  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // ui = ActivityMainBinding.inflate(layoutInflater)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(ui.toolbar)
 
         adapter = MainAdapter(object : OnItemOnClickListener {
             override fun onItemClick(note: Note) {
                 openNoteScreen(note)
             }
         })
-        mainRecycler.adapter = adapter
+        ui.mainRecycler.adapter = adapter
 
-        fab.setOnClickListener { openNoteScreen(null) }
+        ui.fab.setOnClickListener { openNoteScreen(null) }
     }
 
     override fun renderData(data: List<Note>?) {

@@ -15,4 +15,6 @@ object Repository {
 
     fun getNoteById(id: String) = remoteDadaProvider.getNoteById(id)
 
+    fun getCurrentUser() = remoteDadaProvider.getCurrentUser()
+
 }
