@@ -7,5 +7,12 @@
     <string name="body">Текст заметки</string>
     <string name="new_note_title">New note</string>
     <string name="ok_bth_title">ERROR</string>
+    <string name="logout_menu_title">SETTINGS</string>
+
+    <string name="logout_dialog_title">Выйти из аккаунта?</string>
+    <string name="logout_dialog_message">Все ваши заметки будут сохранены. Вы сможете получить к ним доступ после авторизации.</string>
+    <string name="logout_dialog_cancel">Отмена</string>
+    <string name="ADD">Add</string>
+
 
 </resources>

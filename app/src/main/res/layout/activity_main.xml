@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/teal_700"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="Notes" />
 
@@ -37,7 +38,7 @@
         android:layout_marginEnd="@dimen/padding_default"
         android:layout_marginRight="@dimen/padding_default"
         android:layout_marginBottom="@dimen/padding_default"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/ADD"
         android:src="@drawable/btn_add"
         app:fabSize="normal"
         app:layout_anchor="@id/mainRecycler"
