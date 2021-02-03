@@ -1,4 +1,4 @@
-package com.example.android_kotlin.ui.main
+package com.example.android_kotlin.ui.note
 
 import android.content.Context
 import android.content.Intent
@@ -14,7 +14,7 @@ import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.databinding.ActivityNoteBinding
 import com.example.android_kotlin.ui.format
 import com.example.android_kotlin.ui.getColorInt
-import com.example.android_kotlin.ui.note.NoteViewModel
+import com.example.android_kotlin.ui.base.BaseActivity
 import java.util.*
 
 private const val SAVE_DELAY = 2000L
@@ -54,6 +54,7 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(ui.toolbar)
 
         val noteId = intent.getStringExtra(EXTRA_NOTE)
         noteId?.let { viewModel.loadNote(it) } ?: run{

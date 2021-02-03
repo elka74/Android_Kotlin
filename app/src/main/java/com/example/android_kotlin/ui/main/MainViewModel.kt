@@ -1,14 +1,12 @@
 package com.example.android_kotlin.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.data.model.NoteResult
 import com.example.android_kotlin.data.model.NoteResult.Error
 import com.example.android_kotlin.data.model.NoteResult.Success
 import com.example.android_kotlin.data.model.Repository
+import com.example.android_kotlin.ui.base.BaseViewModel
 
 class MainViewModel(val repository: Repository = Repository) :
     BaseViewModel<List<Note>?, MainViewState>() {

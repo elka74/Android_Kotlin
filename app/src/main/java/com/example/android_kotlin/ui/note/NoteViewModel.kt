@@ -1,14 +1,12 @@
 package com.example.android_kotlin.ui.note
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.data.model.NoteResult
 import com.example.android_kotlin.data.model.NoteResult.Success
 import com.example.android_kotlin.data.model.NoteResult.Error
 import com.example.android_kotlin.data.model.Repository
-import com.example.android_kotlin.ui.main.BaseViewModel
-import com.example.android_kotlin.ui.main.NoteViewState
+import com.example.android_kotlin.ui.base.BaseViewModel
 
 
 class NoteViewModel(val repository: Repository = Repository) :

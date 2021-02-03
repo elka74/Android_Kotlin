@@ -1,9 +1,7 @@
-package com.example.android_kotlin.ui.main
+package com.example.android_kotlin.ui.base
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.example.android_kotlin.R
 import com.google.android.material.snackbar.Snackbar
