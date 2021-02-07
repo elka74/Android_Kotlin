@@ -7,6 +7,7 @@
     android:layout_marginTop="@dimen/CV"
     android:layout_marginEnd="@dimen/CV"
     android:layout_marginBottom="@dimen/CV"
+    android:id="@+id/container"
     tools:backgroundTint="@android:color/holo_purple">
 
     <LinearLayout
@@ -20,10 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/start_margin"
-            android:layout_marginLeft="@dimen/start_margin"
             android:layout_marginTop="@dimen/top_margin"
             android:layout_marginEnd="@dimen/end_margin"
-            android:layout_marginRight="@dimen/end_margin"
             tools:text="Kotlin forever" />
 
         <TextView

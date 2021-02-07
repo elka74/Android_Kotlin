@@ -1,4 +1,4 @@
-package com.example.android_kotlin.ui.main
+package com.example.android_kotlin.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -6,23 +6,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProviders
+import org.koin.android.viewmodel.ext.android.viewModel
 import com.example.android_kotlin.R
 import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.databinding.ActivityMainBinding
 import com.example.android_kotlin.ui.LogoutDialog
-import com.example.android_kotlin.ui.base.BaseActivity
-import com.example.android_kotlin.ui.note.NoteActivity
-import com.example.android_kotlin.ui.splash.SplashActivity
+import com.example.android_kotlin.ui.state.MainViewState
+import com.example.android_kotlin.ui.vieewModel.MainViewModel
 import com.firebase.ui.auth.AuthUI
 
 
 class MainActivity() : BaseActivity<List<Note>?, MainViewState>(), LogoutDialog.LogoutListener {
 
-
-    override val viewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this).get(MainViewModel::class.java)
-    }
+    override val viewModel: MainViewModel by viewModel()
     override val layoutRes: Int = R.layout.activity_main
     private lateinit var adapter: MainAdapter
     override val ui: ActivityMainBinding

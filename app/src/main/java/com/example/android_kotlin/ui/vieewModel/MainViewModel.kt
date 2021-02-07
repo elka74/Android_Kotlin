@@ -1,4 +1,4 @@
-package com.example.android_kotlin.ui.main
+package com.example.android_kotlin.ui.vieewModel
 
 import androidx.lifecycle.Observer
 import com.example.android_kotlin.data.model.Note
@@ -6,9 +6,9 @@ import com.example.android_kotlin.data.model.NoteResult
 import com.example.android_kotlin.data.model.NoteResult.Error
 import com.example.android_kotlin.data.model.NoteResult.Success
 import com.example.android_kotlin.data.model.Repository
-import com.example.android_kotlin.ui.base.BaseViewModel
+import com.example.android_kotlin.ui.state.MainViewState
 
-class MainViewModel(val repository: Repository = Repository) :
+class MainViewModel(repository: Repository) :
     BaseViewModel<List<Note>?, MainViewState>() {
 
     private val notesObserver = object : Observer<NoteResult> {

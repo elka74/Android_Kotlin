@@ -14,13 +14,13 @@ private const val NOTES_COLLECTION = "notes"
 private const val USERS_COLLECTION = "users"
 private val TAG = "${FireStoreProvider::class.java.simpleName} :"
 
-class FireStoreProvider : RemoteDadaProvider {
-
-    private val db = FirebaseFirestore.getInstance()
+class FireStoreProvider(
+    private val firebaseAuth: FirebaseAuth,
+    private val db: FirebaseFirestore
+) : RemoteDadaProvider {
 
     private val currentUser
-        get() = FirebaseAuth.getInstance().currentUser
-
+        get() = firebaseAuth.currentUser
 
     override fun subscribeToAllNotes(): LiveData<NoteResult> =
         MutableLiveData<NoteResult>().apply {
@@ -79,11 +79,29 @@ class FireStoreProvider : RemoteDadaProvider {
 
     override fun getCurrentUser(): LiveData<User?> =
         MutableLiveData<User?>().apply {
-            value = currentUser?.let{
+            value = currentUser?.let {
                 User(
                     it.displayName ?: "",
                     it.email ?: ""
-                        )
+                )
+            }
+        }
+
+    override fun deleteNote(noteId: String): LiveData<NoteResult> =
+        MutableLiveData<NoteResult>().apply {
+            try {
+                getUserNotesCollection()
+                    .document(noteId)
+                    .delete()
+                    .addOnSuccessListener {
+                        value = NoteResult.Success(null)
+                    }
+                    .addOnFailureListener {
+                        throw it
+                    }
+
+            } catch (e: Throwable) {
+                value = NoteResult.Error(e)
             }
         }
 

@@ -1,14 +1,14 @@
-package com.example.android_kotlin.ui.main
+package com.example.android_kotlin.ui.activity
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_kotlin.R
 import com.example.android_kotlin.data.model.Color
 import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.databinding.ItemNoteBinding
+import com.example.android_kotlin.ui.getColorInt
 
 interface OnItemOnClickListener {
     fun onItemClick(note: Note)
@@ -44,16 +44,7 @@ class MainAdapter(private val onItemClickListener: OnItemOnClickListener) :
                 ui.title.text = title
                 ui.body.text = this.note
 
-                val color = when (color) {
-                    Color.WHITE -> R.color.color_white
-                    Color.VIOLET -> R.color.color_violet
-                    Color.YELLOW -> R.color.color_yellow
-                    Color.RED -> R.color.color_red
-                    Color.PINK -> R.color.color_pink
-                    Color.GREEN -> R.color.color_green
-                    Color.BLUE -> R.color.color_blue
-                }
-                itemView.setBackgroundResource(color)
+                ui.container.setCardBackgroundColor(note.color.getColorInt(itemView.context))
                 itemView.setOnClickListener { onItemClickListener.onItemClick(note) }
             }
         }

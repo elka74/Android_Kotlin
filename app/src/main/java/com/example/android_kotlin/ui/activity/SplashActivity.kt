@@ -1,18 +1,17 @@
-package com.example.android_kotlin.ui.splash
+package com.example.android_kotlin.ui.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.ViewModelProviders
+
 import com.example.android_kotlin.R
 import com.example.android_kotlin.data.model.NoAuthException
 import com.example.android_kotlin.databinding.ActivitySplashBinding
-import com.example.android_kotlin.ui.base.BaseActivity
-import com.example.android_kotlin.ui.main.MainActivity
-import com.example.android_kotlin.ui.note.NoteActivity.Companion.getStartIntent
+import com.example.android_kotlin.ui.state.SplashViewState
+import com.example.android_kotlin.ui.vieewModel.SplashViewModel
 import com.firebase.ui.auth.AuthUI
-
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 private const val RS_SIGN_IN = 42
@@ -20,9 +19,7 @@ private const val START_DELAY = 1000L
 
 class SplashActivity : BaseActivity<Boolean?, SplashViewState>() {
 
-    override val viewModel: SplashViewModel by lazy {
-        ViewModelProviders.of(this).get(SplashViewModel::class.java)
-    }
+    override val viewModel: SplashViewModel by viewModel()
 
     override val ui: ActivitySplashBinding
             by lazy { ActivitySplashBinding.inflate(layoutInflater) }
@@ -33,8 +30,10 @@ class SplashActivity : BaseActivity<Boolean?, SplashViewState>() {
     override fun onResume() {
         super.onResume()
         Handler(Looper.getMainLooper())
-            .postDelayed({ viewModel.requestUser() },
-                START_DELAY)
+            .postDelayed(
+                { viewModel.requestUser() },
+                START_DELAY
+            )
     }
 
     override fun renderData(data: Boolean?) {

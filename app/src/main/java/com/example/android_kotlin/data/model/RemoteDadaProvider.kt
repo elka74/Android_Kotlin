@@ -12,4 +12,6 @@ interface RemoteDadaProvider {
 
     fun getCurrentUser(): LiveData<User?>
 
+    fun deleteNote(noteId:String): LiveData<NoteResult>
+
 }

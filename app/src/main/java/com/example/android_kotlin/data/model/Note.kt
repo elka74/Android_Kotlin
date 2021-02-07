@@ -1,7 +1,7 @@
 package com.example.android_kotlin.data.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize
@@ -9,7 +9,7 @@ data class Note(
     val id: String = "",
     val title: String = "",
     val note: String = "",
-    val color: Color = randomColor,
+    val color: Color = Color.GREEN,
     val lastChanged: Date = Date()
 ) : Parcelable {
     override fun equals(other: Any?): Boolean {
@@ -26,9 +26,6 @@ data class Note(
 
     }
 }
-
-val randomColor = Color.values().toList().shuffled()
-    .first() // попытка сделать фйон заметки по умолчанию рандомным
 
 enum class Color {
     WHITE,
