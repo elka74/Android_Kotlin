@@ -1,12 +1,8 @@
 package com.example.android_kotlin.ui.vieewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.android_kotlin.data.model.Note
-import com.example.android_kotlin.data.model.NoteResult
-import com.example.android_kotlin.data.model.NoteResult.Success
 import com.example.android_kotlin.data.model.NoteResult.Error
+import com.example.android_kotlin.data.model.NoteResult.Success
 import com.example.android_kotlin.data.model.Repository
 import com.example.android_kotlin.ui.state.NoteViewState
 
@@ -28,13 +24,13 @@ class NoteViewModel(val repository: Repository) :
     }
 
     fun loadNote(noteId: String) {
-        repository.getNoteById(noteId).observeForever { t ->
-            t?.let {
-                viewStateLiveData.value = when (t) {
+        repository.getNoteById(noteId).observeForever { result ->
+            result?.let {
+                viewStateLiveData.value = when (result) {
                     is Success<*> ->
-                        NoteViewState(NoteViewState.Data(note = t.data as? Note))
+                        NoteViewState(NoteViewState.Data(note = result.data as? Note))
                     is Error ->
-                        NoteViewState(error = t.error)
+                        NoteViewState(error = result.error)
                 }
             }
         }

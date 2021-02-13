@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/padding_default"
         android:layout_marginBottom="@dimen/padding_default"
-        android:contentDescription="@string/ADD"
+        android:contentDescription="@string/add"
         android:src="@drawable/btn_add"
         app:fabSize="normal"
         app:layout_anchor="@id/mainRecycler"

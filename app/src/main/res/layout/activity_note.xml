@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m_dp"
             android:background="@null"
-            android:hint="@string/body"
+            android:inputType="text"
             android:autofillHints="text" />
     </LinearLayout>
 

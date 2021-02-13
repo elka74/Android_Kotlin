@@ -1,5 +1,6 @@
 package com.example.android_kotlin.ui.vieewModel
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Observer
 import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.data.model.NoteResult
@@ -33,8 +34,8 @@ class MainViewModel(repository: Repository) :
         viewStateLiveData.value = MainViewState()
         repositoryNotes.observeForever(notesObserver)
     }
-
-    override fun onCleared() {
+    @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
+    public override fun onCleared() {
         repositoryNotes.removeObserver(notesObserver)
     }
 }

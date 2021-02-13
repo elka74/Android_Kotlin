@@ -17,8 +17,8 @@ class LogoutDialog : DialogFragment() {
         AlertDialog.Builder(context!!)
             .setTitle(R.string.logout_dialog_title)
             .setMessage(R.string.logout_dialog_message)
-            .setPositiveButton(R.string.ok_bth_title) { _, _ ->  (activity as LogoutListener).onLogout() }
-            .setNegativeButton(R.string.logout_dialog_cancel) {_, _ -> dismiss() }
+            .setPositiveButton(R.string.ok_bth_title) { _, _ -> (activity as LogoutListener).onLogout() }
+            .setNegativeButton(R.string.logout_dialog_cancel) { _, _ -> dismiss() }
             .create()
 
     interface LogoutListener {

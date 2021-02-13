@@ -21,7 +21,7 @@ import com.example.android_kotlin.ui.vieewModel.NoteViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-private const val SAVE_DELAY = 2000L
+private const val SAVE_DELAY = 1000L
 
 class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
 
@@ -58,10 +58,9 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(ui.toolbar)
-
         val noteId = intent.getStringExtra(EXTRA_NOTE)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         noteId?.let {
             viewModel.loadNote(it)
         } ?: run {
