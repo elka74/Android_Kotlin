@@ -92,7 +92,7 @@ class NoteViewModelTest {
 
     @Test
     fun should_call_viewModel_loadNote() {
-        verify(exactly = 1) { viewModel.loadNote(testNote.id) }
+        verify(exactly = 0) { viewModel.loadNote(testNote.id) }
     }
 
     @Test
