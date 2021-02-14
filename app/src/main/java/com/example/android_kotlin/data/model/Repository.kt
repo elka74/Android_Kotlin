@@ -1,15 +1,11 @@
 package com.example.android_kotlin.data.model
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import java.util.*
-
 
 class Repository(private val remoteDadaProvider: RemoteDadaProvider) {
 
-    fun getNotes() = remoteDadaProvider.subscribeToAllNotes()
-    fun saveNote(note: Note) = remoteDadaProvider.saveNote(note)
-    fun getNoteById(id: String) = remoteDadaProvider.getNoteById(id)
-    fun getCurrentUser() = remoteDadaProvider.getCurrentUser()
-    fun deleteNote(noteId: String) = remoteDadaProvider.deleteNote(noteId)
+    suspend fun getNotes() = remoteDadaProvider.subscribeToAllNotes()
+    suspend fun saveNote(note: Note) = remoteDadaProvider.saveNote(note)
+    suspend fun getNoteById(id: String) = remoteDadaProvider.getNoteById(id)
+    suspend fun getCurrentUser() = remoteDadaProvider.getCurrentUser()
+    suspend fun deleteNote(noteId: String) = remoteDadaProvider.deleteNote(noteId)
 }

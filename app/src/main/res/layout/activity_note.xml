@@ -64,7 +64,9 @@
             android:layout_marginTop="@dimen/m_dp"
             android:background="@null"
             android:inputType="text"
-            android:autofillHints="text" />
+            android:hint="@string/body"
+            android:autofillHints="text"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
 

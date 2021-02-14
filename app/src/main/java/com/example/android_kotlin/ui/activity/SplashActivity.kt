@@ -4,11 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-
 import com.example.android_kotlin.R
 import com.example.android_kotlin.data.model.NoAuthException
 import com.example.android_kotlin.databinding.ActivitySplashBinding
-import com.example.android_kotlin.ui.state.SplashViewState
 import com.example.android_kotlin.ui.vieewModel.SplashViewModel
 import com.firebase.ui.auth.AuthUI
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -17,7 +15,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 private const val RS_SIGN_IN = 42
 private const val START_DELAY = 1000L
 
-class SplashActivity : BaseActivity<Boolean?, SplashViewState>() {
+class SplashActivity : BaseActivity<Boolean>() {
 
     override val viewModel: SplashViewModel by viewModel()
 
@@ -36,8 +34,8 @@ class SplashActivity : BaseActivity<Boolean?, SplashViewState>() {
             )
     }
 
-    override fun renderData(data: Boolean?) {
-        data?.takeIf { it }?.let { startMainActivity() }
+    override fun renderData(data: Boolean) {
+        if (data)  startMainActivity()
     }
 
     override fun renderError(error: Throwable) {

@@ -4,39 +4,62 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.android_kotlin.R
-import com.example.android_kotlin.data.model.Note
 import com.example.android_kotlin.ui.vieewModel.BaseViewModel
-import com.example.android_kotlin.ui.state.BaseViewState
-import com.example.android_kotlin.ui.vieewModel.NoteViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.consumeEach
+import kotlin.coroutines.CoroutineContext
 
 
+abstract class BaseActivity<T> : AppCompatActivity(), CoroutineScope {
 
-abstract class BaseActivity<T, VS : BaseViewState<T>> : AppCompatActivity() {
+    override val coroutineContext: CoroutineContext by lazy {
+        Dispatchers.Main + Job()
+    }
+    private lateinit var dataJob: Job
+    private lateinit var errorJob: Job
 
-    abstract val viewModel: BaseViewModel<T, VS>
+    abstract val viewModel: BaseViewModel<T>
     abstract val layoutRes: Int
     abstract val ui: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(ui.root)
+    }
 
-        viewModel.getViewState().observe(this) { t ->
-            t?.apply {
-                data?.let { data -> renderData(data) }
-                error?.let { error -> renderError(error) }
+    override fun onStart() {
+        super.onStart()
+        dataJob = launch {
+            viewModel.getViewState().consumeEach {
+                renderData(it)
+            }
+        }
+        errorJob = launch {
+            viewModel.getErrorChannel().consumeEach {
+                renderError(it)
             }
         }
     }
 
-    abstract fun renderData(data: T)
-
-    protected open fun renderError(error: Throwable) {
-        error.message?.let { showError(it) }
+    override fun onStop() {
+        super.onStop()
+        dataJob.cancel()
+        errorJob.cancel()
     }
 
-    protected open fun showError(error: String) {
+    override fun onDestroy() {
+        super.onDestroy()
+        coroutineContext.cancel()
+    }
+
+    protected open fun renderError(error: Throwable) {
+        error.message?.let { showError(error.message!!) }
+    }
+
+    abstract fun renderData(data: T)
+
+    protected fun showError(error: String) {
         Snackbar.make(ui.root, error, Snackbar.LENGTH_INDEFINITE).apply {
             setAction(R.string.ok_bth_title) { dismiss() }
             show()

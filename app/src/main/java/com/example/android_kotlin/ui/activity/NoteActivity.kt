@@ -3,8 +3,6 @@ package com.example.android_kotlin.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Menu
@@ -18,15 +16,17 @@ import com.example.android_kotlin.ui.format
 import com.example.android_kotlin.ui.getColorInt
 import com.example.android_kotlin.ui.state.NoteViewState
 import com.example.android_kotlin.ui.vieewModel.NoteViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-private const val SAVE_DELAY = 1000L
+private const val SAVE_DELAY = 2000L
 
-class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
+class NoteActivity : BaseActivity<NoteViewState.Data>() {
 
     companion object {
-        const val EXTRA_NOTE = "NoteActivity.extra.Note"
+        const val EXTRA_NOTE = "NoteActivity.extra.NOTE"
 
         fun getStartIntent(context: Context, noteId: String?): Intent {
             val intent = Intent(context, NoteActivity::class.java)
@@ -82,7 +82,7 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
                 ui.titleEt.setText(title)
             }
             if (note != ui.bodyEt.text.toString()) {
-                ui.bodyEt.setText(title)
+                ui.bodyEt.setText(note)
             }
             setEditListener()
 
@@ -130,7 +130,9 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
     private fun triggerSaveNote() {
         if (ui.titleEt.text == null || ui.titleEt.text!!.length < 3) return
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        launch {
+            delay(SAVE_DELAY)
+        }
             note = note?.copy(
                 title = ui.titleEt.text.toString(),
                 note = ui.bodyEt.text.toString(),
@@ -138,9 +140,7 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
                 lastChanged = Date()
             ) ?: createNewNote()
 
-            if (note != null) viewModel.saveChanges(note!!)
-
-        }, SAVE_DELAY)
+            note?.let {viewModel.saveChanges(it)}
     }
 
     override fun renderData(data: NoteViewState.Data) {
